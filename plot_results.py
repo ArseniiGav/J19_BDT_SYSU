@@ -199,7 +199,7 @@ def plot_model_comparison(run, dfs, run_name, colors, names, shifts,
     
 def plot_res_and_bias(run, df_bdt, run_name, file_name, mode,
                       symbols, colors, options, names,
-                      ylim=3, errors=False,
+                      ylim=3, errors=False, opt=0,
                       bias_lims=[-0.35, 0.35], legend_x=0.55,
                       legend_y=0.98, opacity=0.7):
     
@@ -213,6 +213,8 @@ def plot_res_and_bias(run, df_bdt, run_name, file_name, mode,
         df = lambda k: df_bdt[(df_bdt['opt']==options[k]) & (df_bdt['model']=='5M')]
     if mode=='datasets':
         df = lambda k: df_bdt[(df_bdt['opt']==23) & (df_bdt['model']==options[k])]
+    if mode=='opt_vs_basic':
+        df = lambda k: df_bdt[(df_bdt['opt']==opt) & (df_bdt['model']==options[k])]
     
     for k in range(len(options)):
         if errors:
